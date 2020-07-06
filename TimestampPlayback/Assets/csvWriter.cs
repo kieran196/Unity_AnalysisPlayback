@@ -24,7 +24,11 @@ public class csvWriter : MonoBehaviour {
     }
 
     private void Start() {
-        WriteLine("Timestamp, x, y, z");
+        WriteLine("Timestamp, xL, yL, zL, xR, yR, zR");
+    }
+
+    void OnApplicationQuit() {
+        Debug.Log("Application Exited - Automatically logging data..");
         writeToFile();
     }
 

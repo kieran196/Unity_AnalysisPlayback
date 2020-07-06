@@ -6,7 +6,8 @@ using System.IO;
 
 public class dataReader : MonoBehaviour
 {
-    public GameObject cubePlaybackObj;
+    public GameObject cubeLocalPlaybackObj;
+    public GameObject cubeRemotePlaybackObj;
     public Slider slider;
     public Text timeStampText;
     public string importFile = "";
@@ -20,13 +21,16 @@ public class dataReader : MonoBehaviour
     }
 
     public void setCube(int slider) {
-        Debug.Log("At pos:" + slider + " | data:" + data[slider] + " , Length:" + data.Length);
+        Debug.Log("At pos:" + slider + " | Local User:" + data[slider].getPositionL() + " | Remote User:" + data[slider].getPositionR());
         timeStampText.text = "Timestamp = "+ data[slider].getTimeStamp();
-        cubePlaybackObj.transform.position = data[slider].getPosition();
+        cubeLocalPlaybackObj.transform.position = data[slider].getPositionL();
+        cubeRemotePlaybackObj.transform.position = data[slider].getPositionR();
     }
 
     // Start is called before the first frame update
     void Start() {
+        cubeLocalPlaybackObj.SetActive(true);
+        cubeRemotePlaybackObj.SetActive(true);
         readData();
     }
 
@@ -53,8 +57,9 @@ public class dataReader : MonoBehaviour
                     if (split.Length > 3) {
                         data[count - 1] = new storeData();
                         data[count-1].setTimeStamp(split[0]);
-                        data[count-1].setPosition(new Vector3(float.Parse(split[1]), float.Parse(split[2]), float.Parse(split[3])));
-                        Debug.Log("Timestamp:" + split[0] + ", x:" + split[1] + ", y:" + split[2] + ", z" + split[3]);
+                        data[count-1].setPositionL(new Vector3(float.Parse(split[1]), float.Parse(split[2]), float.Parse(split[3])));
+                        data[count-1].setPositionR(new Vector3(float.Parse(split[4]), float.Parse(split[5]), float.Parse(split[6])));
+                        //Debug.Log("Timestamp:" + split[0] + ", xL:" + split[1] + ", yL:" + split[2] + ", zL" + split[3] + ", xR:" + split[4] + ", yR:" + split[5] + ", zR" + split[6]);
                     }
                 }
                 count++;
