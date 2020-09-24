@@ -19,6 +19,7 @@ public class Logdata : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        Debug.Log("Cubes:" + GameObject.FindGameObjectsWithTag("Player").Length);
         if (cursorObjs.Length >= 2) {
             time_elapsed += Time.deltaTime; // Get the overall time the app is running.
             logData(); // Logged once per frame.
