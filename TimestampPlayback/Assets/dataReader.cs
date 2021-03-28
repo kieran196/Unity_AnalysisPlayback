@@ -12,33 +12,149 @@ public class dataReader : MonoBehaviour
     public Text timeStampText;
     public string importFile = "";
     private string DIR = "Logs/";
+    private string DIRET = "eyetracking/";
+    private string DIRCL = "checklist/realtime/";
+    private string DIRCLP = "checklist/post/";
     private bool dataInitialized = false;
     [SerializeField]
     private int heatMapCount = 0;
     private Vector3 newHeadPos;
     private Vector3 newHeadRot;
+    public castray floorRay;
     [SerializeField]
-    private bool runAutomatically = false;
+    public bool runAutomatically = false;
     [Tooltip("Change the speed of the playback. (1 = realtime)")]
     [SerializeField]
     private float speedIncreased = 1f;
-    private float realtimeTimer = 0f;
+    [SerializeField]
+    private float realtimeTimer, realtimeTimerConverted = 0f;
+    private int realtimeChecklistDataCounter = 0;
+
+    public GameObject[] elementsByID;
+    [SerializeField]
+    private BendCast bendcast;
+
+    private void logData() {
+        Debug.Log("ParticipantData:" + importFile + ", Time Looking At Floor:" + floorRay.timeLookingAtFloor + ", Overall Eye Tracking Time:" + overallEyeTrackingTime);
+        logElementData.Add("ParticipantData:" + importFile + ", Time Looking At Floor:" + floorRay.timeLookingAtFloor + ", Overall Eye Tracking Time:" + overallEyeTrackingTime);
+        foreach (GameObject element in elementsByID) {
+            elementData ele = element.GetComponent<elementData>();
+            Debug.Log("Element ID = " + ele.elementID + " , TotalCollisionPoints = " + ele.totalCollisionPointsRaw + " , TimeSpentLookingAtElement = " + ele.timeSpentLookingAtElement + " , DwellTimer = " + ele.dwellTime);
+            logElementData.Add(ele.elementID + "," + ele.totalCollisionPointsRaw + "," + ele.timeSpentLookingAtElement + "," + ele.dwellTime);
+        }
+        logParticipantData();
+    }
+    private List<string> logElementData = new List<string>();
+    private void logParticipantData() {
+        string dest = System.IO.Path.Combine(Application.dataPath, "output.csv");
+        StreamWriter writer = null;
+        int count = 1;
+        bool fileExists = File.Exists(dest);
+        if (fileExists) {
+            dest = System.IO.Path.Combine(Application.dataPath, "output.csv");
+            count++;
+            Debug.Log(dest + " already exists - Failed to log data.");
+            writer = new StreamWriter(dest, false) as StreamWriter;
+        } else {
+            print("Found path:" + dest);
+            writer = new StreamWriter(dest, true) as StreamWriter;
+        }
+        print("File exists?" + fileExists);
+        for (int i = 0; i < logElementData.Count; i++) {
+            //print(logInfo[i]);
+            writer.Write(logElementData[i]);
+            writer.WriteLine();
+        }
+        print("Writen to file:" + dest);
+        writer.Close();
+    }
+
+    private bool isARBased = false; // Determine which root gameobject to start with
+    [SerializeField]
+    private GameObject[] rootObjs; // AR = [0], PB = [1]
+    [SerializeField]
+    private Text importFileText;
+    [SerializeField]
+    private Text conditionText;
+    public void playApp() {
+        runAutomatically = true;
+    }
+
+    public void pauseApp() {
+        runAutomatically = false;
+    }
+    public void startApp() {
+        if (!isUnityEditor) {
+            logElementData = new List<string>();
+
+            importFile = importFileText.text;
+            if (conditionText.text == "AR") {
+                rootObjs[0].SetActive(true);
+                rootObjs[1].SetActive(false);
+            } else {
+                rootObjs[0].SetActive(false);
+                rootObjs[1].SetActive(true);
+            }
+            allChecklistElementsUnsrted = GameObject.FindGameObjectsWithTag("BIM");
+            elementsByID = new GameObject[30];
+            readPTChecklistData();
+            root = FindObjectOfType<updatePos>();
+            Debug.Log("Found:" + root.transform.name);
+            cubeLocalPlaybackObj.SetActive(true);
+            readData();
+            readRTChecklistData();
+        }
+    }
+
+    public void stopApp() {
+
+    }
+
     private void Update() {
         if (dataInitialized) {
             setCube((int)slider.value);
         } if (runAutomatically) {
             realtimeTimer += (Time.deltaTime*offset)*speedIncreased;
+            realtimeTimerConverted = realtimeTimer * 0.121f;
             slider.value = realtimeTimer;
-            if (realtimeTimer >= (slider.maxValue-1f)) {
+            if (realtimeTimer >= (slider.maxValue-5f)) {
                 runAutomatically = false;
+                logData();
                 realtimeTimer = 0f;
                 slider.value = 0f;
+            }
+        }
+        if (realtimeChecklistData != null) {
+            int nextChecklistTimerVal = (int)float.Parse(realtimeChecklistData[realtimeChecklistDataCounter].getTimeStamp());
+            int currTimeStamp = (int)float.Parse(data[(int)slider.value].getTimeStamp());
+            if (nextChecklistTimerVal == currTimeStamp) {
+                Debug.Log("Participant checked ele:" + realtimeChecklistData[realtimeChecklistDataCounter].getEleName() + " to: " + realtimeChecklistData[realtimeChecklistDataCounter].getChecklistValue());
+                string checklistVal = realtimeChecklistData[realtimeChecklistDataCounter].getChecklistValue();
+                GameObject gameObjRef = realtimeChecklistData[realtimeChecklistDataCounter].getRefGameObject();
+                if (checklistVal == "correct") {
+                    gameObjRef.GetComponent<Renderer>().material.color = Color.green;
+                } else if (checklistVal == "other") {
+                    gameObjRef.GetComponent<Renderer>().material.color = Color.yellow;
+                } else if (checklistVal == "incorrect") {
+                    gameObjRef.GetComponent<Renderer>().material.color = Color.red;
+                }
+                realtimeChecklistDataCounter++;
+            } else if (currTimeStamp != 0) {
+                /*if (!realtimeChecklistData[realtimeChecklistDataCounter].isBendcastAssigned) {
+                    bendcast.currentlyPointingAtRender = realtimeChecklistData[realtimeChecklistDataCounter].getRefGameObject().GetComponent<Renderer>();
+                    bendcast.currentlyPointingAt = realtimeChecklistData[realtimeChecklistDataCounter].getRefGameObject();
+                    bendcast.currentlyPointingAtRender.material.color = Color.blue;
+                    realtimeChecklistData[realtimeChecklistDataCounter].isBendcastAssigned = true;
+                }*/
             }
         }
     }
 
     public void setCube(int slider) {
-        Debug.Log("At pos:" + slider + " | User Pos:" + data[slider].getPosition() + " | User Rot::" + data[slider].getEulerAngles());
+        if (root.debugMode) {
+            Debug.Log("At pos:" + slider + " | User Pos:" + data[slider].getPosition() + " | User Rot::" + data[slider].getEulerAngles());
+        }
+        
         timeStampText.text = "Timestamp = "+ data[slider].getTimeStamp();
         cubeLocalPlaybackObj.transform.position = data[slider].getPosition();
         cubeLocalPlaybackObj.transform.eulerAngles = data[slider].getEulerAngles();
@@ -52,10 +168,37 @@ public class dataReader : MonoBehaviour
         }
     }
 
+    private GameObject findChecklistID(string eleName) {
+        //Debug.Log("Searching for:" + eleName);
+        foreach (GameObject element in allChecklistElementsUnsrted) {
+            //Debug.Log("Found ele:" + element.name);
+            if (element.name == eleName) {
+                return element;
+            }
+        }
+        return null;
+    }
+    public bool isUnityEditor = false;
     // Start is called before the first frame update
     void Start() {
-        cubeLocalPlaybackObj.SetActive(true);
-        readData();
+        logParticipantData();
+        #if !UNITY_EDITOR
+        DIR = Application.persistentDataPath + "/";
+        #endif
+        #if UNITY_EDITOR
+        DIR = "Logs/";
+        #endif
+
+        if (isUnityEditor) {
+            allChecklistElementsUnsrted = GameObject.FindGameObjectsWithTag("BIM");
+            elementsByID = new GameObject[30];
+            readPTChecklistData();
+            root = FindObjectOfType<updatePos>();
+            Debug.Log("Found:" + root.transform.name);
+            cubeLocalPlaybackObj.SetActive(true);
+            readData();
+            readRTChecklistData();
+        }
     }
 
     
@@ -77,18 +220,82 @@ public class dataReader : MonoBehaviour
         return count;
     }
     storeData[] data = null;
+    storeRTChecklistData[] realtimeChecklistData = null;
     public float offset;
     private int count = 0;
     public float overallEyeTrackingTime = 0f;
+    private bool exit = false;
+    [SerializeField]
+    private updatePos root;
+
+    private GameObject[] allChecklistElementsUnsrted;
+
+    public void readPTChecklistData() {
+        Debug.Log("DIR = " + @DIR + DIRCLP + importFile + ".csv");
+        using (var reader = new StreamReader(@DIR + DIRCLP + importFile + ".csv")) {
+            int lineCount = getLines(new StreamReader(@DIR + DIRCLP + importFile + ".csv"));
+            int count = 0;
+            while (!reader.EndOfStream) {
+                var line = reader.ReadLine();
+                if (count >= 1) {
+                    string[] split = line.Split(',');
+                    string elementName = split[0];
+                    GameObject obj = findChecklistID(elementName);
+                    elementsByID[count-1] = obj;
+                }
+                count++;
+            }
+        }
+    }
+    public void readRTChecklistData() {
+        Debug.Log("DIR = " + @DIR + DIRCL + importFile + ".csv");
+        using (var reader = new StreamReader(@DIR + DIRCL + importFile + ".csv")) {
+            int lineCount = getLines(new StreamReader(@DIR + DIRCL + importFile + ".csv"));
+            realtimeChecklistData = new storeRTChecklistData[lineCount];
+            count = 0;
+            while (!reader.EndOfStream) {
+                var line = reader.ReadLine();
+                string[] split = line.Split(',');
+                if (count >= 1) {
+                    realtimeChecklistData[count - 1] = new storeRTChecklistData();
+                    realtimeChecklistData[count - 1].setTimeStamp(split[0]);
+                    realtimeChecklistData[count - 1].setEleName(split[1]);
+                    realtimeChecklistData[count - 1].setEleID(split[2]);
+                    realtimeChecklistData[count - 1].setChecklistValue(split[3]);
+                    GameObject refGameObj = elementsByID[int.Parse(split[2])];
+                    if (refGameObj.GetComponent<elementData>() == null) {
+                        elementData eleData = refGameObj.AddComponent<elementData>();
+                        eleData.elementID = int.Parse(split[2]);
+                        realtimeChecklistData[count - 1].setRefGameObject(refGameObj);
+                        //Text label = refGameObj.transform.GetChild(0).GetChild(0).GetComponent<Text>();
+                        //label.text = "ID=" + split[2];
+                    }
+                    //Debug.Log("Name:"+);
+                }
+                count++;
+            }
+        }
+    }
     public void readData() {
-        using (var reader = new StreamReader(@DIR + importFile + ".csv")) {
-            int lineCount = getLines(new StreamReader(@DIR + importFile + ".csv"));
+        Debug.Log("DIR = " + @DIR + DIRET + importFile + ".csv");
+        using (var reader = new StreamReader(@DIR + DIRET + importFile + ".csv")) {
+            int lineCount = getLines(new StreamReader(@DIR + DIRET + importFile + ".csv"));
             slider.maxValue = lineCount;
             Debug.Log("Lines:" + lineCount);
             data = new storeData[lineCount];
             count = 0;
-            while (!reader.EndOfStream) {
+            while (!reader.EndOfStream && !exit) {
+                if (count == lineCount-1) {
+                    Debug.Log("Exiting here..");
+                    string[] splitReader = reader.ReadLine().Split(',');
+                    root.rootPos = new Vector3(float.Parse(splitReader[0]), float.Parse(splitReader[1]), float.Parse(splitReader[2]));
+                    root.rootRot = new Vector3(float.Parse(splitReader[3]), float.Parse(splitReader[4]), float.Parse(splitReader[5]));
+                    root.initPos();
+                    exit = true;
+                    continue;
+                }
                 var line = reader.ReadLine();
+                //Debug.Log(line);
                 string[] split = line.Split(',');
                 if (count >= 1) {
                     //Debug.Log(data[count-1]);

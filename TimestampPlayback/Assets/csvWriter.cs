@@ -14,6 +14,7 @@ public class csvWriter : MonoBehaviour {
 
     public bool logData;
     public bool saveData;
+    public bool ExportEyeTrackingToCSV;
     private List<string> logInfo = new List<string>();
 
     private const string FILE_NAME = "trial";
@@ -29,7 +30,7 @@ public class csvWriter : MonoBehaviour {
 
     void OnApplicationQuit() {
         Debug.Log("Application Exited - Automatically logging data..");
-        writeToFile();
+        //writeToFile();
     }
 
     private void Update() {

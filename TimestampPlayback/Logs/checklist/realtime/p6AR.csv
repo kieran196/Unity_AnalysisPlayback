@@ -1,0 +1,54 @@
+Timestamp, EleName, EleId, Value, Note
+11.0234,Basic Wall:Generic - 200mm:347943,0,correct,
+34.38626,Basic Wall:Generic - 200mm:350286,1,incorrect,
+37.26701,Basic Wall:Generic - 200mm:350286,1,incorrect,1m
+48.40737,Railing:1100mm:349532,2,correct,
+57.4161,Switch_-_Double_3951:Double Switch:361458,3,correct,
+81.2945,Assembled Stair:Stair:349153 Stringer 1,4,correct,
+102.2761,Basic Wall:Generic - 200mm:347460,5,correct,
+132.316,Assembled Stair:Stair:349153 Stringer 2,6,other,
+139.5096,Assembled Stair:Stair:349153 Stringer 2,6,other,25cm
+185.4695,Assembled Stair:Stair:349153 Stringer 2,6,other,
+186.436,Assembled Stair:Stair:349153 Stringer 2,6,correct,
+186.436,Assembled Stair:Stair:349153 Stringer 2,6,correct,
+195.4278,Assembled Stair:Stair:349153 Run 1,7,correct,
+203.3371,Railing:1100mm:349536,8,correct,
+216.0588,M_Rectangular Column:475 x 610mm:365844,9,correct,
+233.8591,M_Rectangular Column:475 x 610mm:365844,9,other,
+233.8591,M_Rectangular Column:475 x 610mm:365844,9,other,
+234.4253,M_Rectangular Column:475 x 610mm:365844,9,incorrect,
+234.4253,M_Rectangular Column:475 x 610mm:365844,9,incorrect,
+238.6714,M_Rectangular Column:475 x 610mm:365844,9,incorrect,80cm
+242.8841,M_Rectangular Column:475 x 610mm:365844,9,incorrect,80cm
+243.5835,M_Rectangular Column:475 x 610mm:365844,9,incorrect,80cm
+250.6939,M_Rectangular Column:475 x 610mm:365701,10,correct,
+259.4527,Basic Wall:Generic - 200mm:350060,11,correct,
+273.308,Switch_-_Double_3951:Double Switch:361137,12,correct,
+297.1555,Switch_-_Double_3951:Double Switch:361508,13,incorrect,
+302.6339,Switch_-_Double_3951:Double Switch:361508,13,incorrect,1m
+311.2765,Basic Wall:Generic - 200mm:347656,14,correct,
+329.0132,Elevator_Call_Panel_7484:Elevator_Call_5355:370679,15,incorrect,
+331.8447,Elevator_Call_Panel_7484:Elevator_Call_5355:370679,15,incorrect,1m
+342.3201,PHILIPS_luxspace-light1,16,other,
+346.4167,PHILIPS_luxspace-light1,16,other,30cm
+354.0444,PHILIPS_luxspace-light:378021,17,correct,
+364.9523,LiftSign,18,correct,
+378.4245,LiftSign,18,other,
+378.4245,LiftSign,18,other,
+387.4509,LiftSign,18,other,10cm
+404.038,PHILIPS_luxspace-light:376308,19,other,
+407.7019,PHILIPS_luxspace-light:376308,19,other,10cm
+419.6918,PHILIPS_luxspace-light:377282,20,correct,
+432.7149,Phone,21,incorrect,
+442.8406,Phone,21,incorrect,2.5m
+458.8606,ExitSign,22,other,
+470.3678,ExitSign,22,other,30cm
+477.396,PHILIPS_luxspace-light:377731,23,correct,
+488.7708,PHILIPS_luxspace-light2,24,correct,
+494.1,PHILIPS_luxspace-light:377085,25,correct,
+502.8437,PHILIPS_luxspace-light:376919,26,incorrect,
+506.3257,PHILIPS_luxspace-light:376919,26,incorrect,1m
+522.9174,ExitSign2,27,other,
+526.6328,ExitSign2,27,other,30cm
+538.5793,FireExtinguisherSign2,28,correct,
+554.7736,PHILIPS_luxspace-light:376148,29,correct,

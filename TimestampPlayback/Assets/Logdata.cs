@@ -7,7 +7,7 @@ public class Logdata : MonoBehaviour {
     public float time_elapsed = 0f;
     public castray[] cursorObjs;
 
-    public void logData() {
+    /*public void logData() {
         float xL = cursorObjs[0].hitPoint.x;
         float yL= cursorObjs[0].hitPoint.y;
         float zL= cursorObjs[0].hitPoint.z;
@@ -26,5 +26,5 @@ public class Logdata : MonoBehaviour {
         } else {
             cursorObjs = FindObjectsOfType<castray>();
         }
-    }
+    }*/
 }
