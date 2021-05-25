@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - BendCast
     - Logdata
+    - WalkingDataReader
     - castray
     - collisions
     - collisionsThreshold
@@ -77,41 +78,43 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11496}
     - Class: 114
-      Script: {instanceID: 11584}
+      Script: {instanceID: 11586}
     - Class: 114
-      Script: {instanceID: 11694}
+      Script: {instanceID: 11662}
     - Class: 114
-      Script: {instanceID: 11788}
+      Script: {instanceID: 11698}
     - Class: 114
-      Script: {instanceID: 11962}
+      Script: {instanceID: 11792}
     - Class: 114
-      Script: {instanceID: 11980}
+      Script: {instanceID: 11968}
     - Class: 114
-      Script: {instanceID: 12114}
+      Script: {instanceID: 11986}
     - Class: 114
-      Script: {instanceID: 12174}
+      Script: {instanceID: 12060}
     - Class: 114
-      Script: {instanceID: 12360}
+      Script: {instanceID: 12122}
     - Class: 114
-      Script: {instanceID: 12750}
+      Script: {instanceID: 12184}
     - Class: 114
-      Script: {instanceID: 12868}
+      Script: {instanceID: 12340}
     - Class: 114
-      Script: {instanceID: 12890}
+      Script: {instanceID: 12372}
     - Class: 114
-      Script: {instanceID: 13212}
+      Script: {instanceID: 12762}
+    - Class: 114
+      Script: {instanceID: 12880}
+    - Class: 114
+      Script: {instanceID: 12902}
     - Class: 114
       Script: {instanceID: 13224}
     - Class: 114
-      Script: {instanceID: 13238}
+      Script: {instanceID: 13236}
     - Class: 114
-      Script: {instanceID: 13254}
+      Script: {instanceID: 13250}
     - Class: 114
-      Script: {instanceID: 103710}
+      Script: {instanceID: 13266}
     - Class: 114
-      Script: {instanceID: 257230}
-    - Class: 114
-      Script: {instanceID: 302956}
+      Script: {instanceID: 29390}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -175,7 +178,7 @@ ScriptsOnlyBuild:
     className: GroupTrack
   - hash:
       serializedVersion: 2
-      Hash: 0b13bda03aefea8775958fb0100a8c39
+      Hash: 880e8d8b67756658460dcda7e65885dd
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: castray
@@ -259,6 +262,12 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
+      Hash: b0671d78ea90337fd6d57d559d13e2b6
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: storeRTChecklistData
+  - hash:
+      serializedVersion: 2
       Hash: bd3cf68c8964d3c66d1c43f4f98508c9
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -293,6 +302,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: AnimationPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 407c24a53f11710395d781f43dbbc777
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: collisionsThreshold
   - hash:
       serializedVersion: 2
       Hash: aba7b2852ef61d175dd9602e7723d5e5
@@ -343,6 +358,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: 13e53f97096f3da2acf06e58fb41cde2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SimpleHighlightFromBendcast
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -367,6 +388,12 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
+      Hash: c5916f8716b2d6b49ba8dd24dfa0c0a8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: cursorDwellCapturer
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -383,6 +410,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: csvWriter
+  - hash:
+      serializedVersion: 2
+      Hash: 39b99db3a9eb08614bd9e620e16bcdf0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: elementData
   - hash:
       serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
@@ -407,6 +440,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 481f653c8cee6646bffa10b06e322fe8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BendCast
   - hash:
       serializedVersion: 2
       Hash: 783f593b9380cf72d0f7ebfd4a0d4bcd
@@ -1105,7 +1144,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: bb4f327819fa8d91669ec1aa42f535d2
+      Hash: 9beaada41bc3d80689a7b2c70caa22da
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: dataReader
@@ -1897,41 +1936,17 @@ ScriptsOnlyBuild:
     className: StatisticsWindow
   - hash:
       serializedVersion: 2
-      Hash: b0671d78ea90337fd6d57d559d13e2b6
+      Hash: 52143e7344345edb0081e405804113ad
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: storeRTChecklistData
+    className: WalkingDataReader
   - hash:
       serializedVersion: 2
-      Hash: 13e53f97096f3da2acf06e58fb41cde2
+      Hash: 053938fb90bacae97c87864f3305ea54
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: SimpleHighlightFromBendcast
-  - hash:
-      serializedVersion: 2
-      Hash: 481f653c8cee6646bffa10b06e322fe8
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: BendCast
-  - hash:
-      serializedVersion: 2
-      Hash: 37bd5c7ae2dbd8751fa189dcd644cef5
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: elementData
-  - hash:
-      serializedVersion: 2
-      Hash: 407c24a53f11710395d781f43dbbc777
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: collisionsThreshold
-  - hash:
-      serializedVersion: 2
-      Hash: f0a05422bcea2192462ec43670e3ce9f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: cursorDwellCapturer
+    className: floorMapElement
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Kieran/Desktop/eyetb/TimestampPlayback.exe
+  playerPath: C:/Users/Kieran/Desktop/builds/TimestampPlayback.exe

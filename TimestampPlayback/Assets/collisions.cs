@@ -33,7 +33,7 @@ public class collisions : MonoBehaviour {
                 eleData.totalCollisionPointsRaw++;
                 eleData.timeSpentLookingAtElement = eleData.totalCollisionPointsRaw * 0.121f;
             } else {
-                Debug.Log("Ele data null for obj:" + other.transform.name);
+                //Debug.Log("Ele data null for obj:" + other.transform.name);
             }
             despawnHeatmap = false;
         }

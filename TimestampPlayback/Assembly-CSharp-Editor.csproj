@@ -232,11 +232,11 @@
     <Reference Include="UnityEditor.UWP.Extensions">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0b4/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Interfaces">
-        <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Interfaces.dll</HintPath>
+    <Reference Include="Clipper">
+        <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/Clipper.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.Windows.Threading">
-        <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Windows.Threading.dll</HintPath>
+    <Reference Include="LibTessDotNet">
+        <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/LibTessDotNet.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
         <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/Newtonsoft.Json.dll</HintPath>
@@ -244,23 +244,23 @@
     <Reference Include="Sprache">
         <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/Sprache.dll</HintPath>
     </Reference>
-    <Reference Include="System.Reactive.PlatformServices">
-        <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.PlatformServices.dll</HintPath>
-    </Reference>
     <Reference Include="System.Reactive.Core">
         <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Clipper">
-        <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/Clipper.dll</HintPath>
+    <Reference Include="System.Reactive.Interfaces">
+        <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Linq">
         <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+        <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading">
+        <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
     <Reference Include="TridifyComponents">
         <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/TridifyComponents.dll</HintPath>
-    </Reference>
-    <Reference Include="LibTessDotNet">
-        <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/LibTessDotNet.dll</HintPath>
     </Reference>
     <Reference Include="TridifyEditorTools">
         <HintPath>C:/Users/Kieran/Documents/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/TridifyEditorTools.dll</HintPath>

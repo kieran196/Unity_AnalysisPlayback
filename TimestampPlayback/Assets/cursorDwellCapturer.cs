@@ -16,12 +16,29 @@ public class cursorDwellCapturer : MonoBehaviour {
 
     public GameObject collisionObj;
     public elementData collisionObjElementData;
+
+    public GameObject lastLookedAtGameObj;
+    public string lastLookedAtGameObjID;
     private void OnTriggerStay(Collider other) {
         if (other.tag == "BIM" && other.gameObject != collisionObj) {
             collisionObj = other.gameObject;
             if (collisionObj.GetComponent<elementData>() != null) {
                 collisionObjElementData = collisionObj.GetComponent<elementData>();
+            } else {
+                collisionObjElementData = collisionObj.transform.parent.GetComponent<elementData>();
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.tag == "BIM") {
+            lastLookedAtGameObj = other.gameObject;
+            if (other.GetComponent<elementData>() != null) {
+                lastLookedAtGameObjID = other.GetComponent<elementData>().elementID.ToString();
+            } else {
+                lastLookedAtGameObjID = other.transform.parent.GetComponent<elementData>().elementID.ToString();
+            }
+            
         }
     }
 
@@ -30,6 +47,8 @@ public class cursorDwellCapturer : MonoBehaviour {
         collisionObjElementData = null;
     }
     void Update() {
+        Debug.DrawRay(this.transform.position, this.transform.forward, Color.red);
+        Debug.DrawRay(this.transform.position, -this.transform.forward, Color.blue);
         if (dataReader.runAutomatically) {
             if (!isInitialized) {
                 isInitialized = true;
@@ -38,10 +57,18 @@ public class cursorDwellCapturer : MonoBehaviour {
             if (Vector3.Distance(this.transform.position, getLastDwellPosition) <= DISTANCE_VALUE) {
                 dwellTimer += Time.deltaTime;
                 if (dwellTimer >= DWELL_THRESHALD) {
+                    if (dwellTimerWThreshald == 0) {
+                        // Here..
+                        if (collisionObjElementData != null) {
+                            collisionObjElementData.dwellCount++;
+                            //Debug.Log("Increased dwell count:" + collisionObjElementData.dwellCount);
+                        }
+                    }
                     dwellTimerWThreshald += Time.deltaTime;
                     // Start logging dwell
                     if (collisionObjElementData != null) {
                         collisionObjElementData.dwellTime += Time.deltaTime;
+                        collisionObjElementData.dwellCountsGreaterThanThreshold++;
                     }
                 }
             } else {

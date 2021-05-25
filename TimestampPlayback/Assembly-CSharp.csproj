@@ -45,6 +45,7 @@
      <Compile Include="Assets\Tridify\DemoAssets\FirstPersonController\MouseLook.cs" />
      <Compile Include="Assets\Tridify\DemoAssets\FirstPersonController\StandaloneInput.cs" />
      <Compile Include="Assets\Tridify\DemoAssets\FirstPersonController\VirtualInput.cs" />
+     <Compile Include="Assets\WalkingDataReader.cs" />
      <Compile Include="Assets\castray.cs" />
      <Compile Include="Assets\checklistParser.cs" />
      <Compile Include="Assets\collisions.cs" />
@@ -53,6 +54,7 @@
      <Compile Include="Assets\cursorDwellCapturer.cs" />
      <Compile Include="Assets\dataReader.cs" />
      <Compile Include="Assets\elementData.cs" />
+     <Compile Include="Assets\floorMapElement.cs" />
      <Compile Include="Assets\storeData.cs" />
      <Compile Include="Assets\storeRTChecklistData.cs" />
      <Compile Include="Assets\updatePos.cs" />

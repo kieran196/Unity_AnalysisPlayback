@@ -8,6 +8,7 @@ public class elementData : MonoBehaviour {
 
     //Total collision points * 0.121f; - Should give an approx on the gaze time.
     public float totalCollisionPointsRaw, timeSpentLookingAtElement, dwellTime;
+    public int dwellCountsGreaterThanThreshold, dwellCount;
 
 
 
