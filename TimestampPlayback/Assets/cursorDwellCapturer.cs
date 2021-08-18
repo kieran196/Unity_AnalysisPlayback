@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class cursorDwellCapturer : MonoBehaviour {
+    public bool calculatePredictedHitpoint;
     [SerializeField]
     private dataReader dataReader;
     public float DISTANCE_VALUE;
@@ -36,6 +37,7 @@ public class cursorDwellCapturer : MonoBehaviour {
             if (other.GetComponent<elementData>() != null) {
                 lastLookedAtGameObjID = other.GetComponent<elementData>().elementID.ToString();
             } else {
+                //Debug.Log(other.transform.name);
                 lastLookedAtGameObjID = other.transform.parent.GetComponent<elementData>().elementID.ToString();
             }
             
@@ -46,15 +48,18 @@ public class cursorDwellCapturer : MonoBehaviour {
         collisionObj = null;
         collisionObjElementData = null;
     }
+    public float lastDwellDistGreaterThanThresh;
     void Update() {
-        Debug.DrawRay(this.transform.position, this.transform.forward, Color.red);
-        Debug.DrawRay(this.transform.position, -this.transform.forward, Color.blue);
-        if (dataReader.runAutomatically) {
+        //Debug.DrawRay(this.transform.position, this.transform.forward, Color.red);
+        //Debug.DrawRay(this.transform.position, -this.transform.forward, Color.blue);
+        if (dataReader.runAutomatically || dataReader.debuggingInEdit) {
             if (!isInitialized) {
                 isInitialized = true;
                 getLastDwellPosition = this.transform.position;
             }
+            lastDwellDistGreaterThanThresh = Vector3.Distance(this.transform.position, getLastDwellPosition);
             if (Vector3.Distance(this.transform.position, getLastDwellPosition) <= DISTANCE_VALUE) {
+                //lastDwellDistGreaterThanThresh = 0f;
                 dwellTimer += Time.deltaTime;
                 if (dwellTimer >= DWELL_THRESHALD) {
                     if (dwellTimerWThreshald == 0) {

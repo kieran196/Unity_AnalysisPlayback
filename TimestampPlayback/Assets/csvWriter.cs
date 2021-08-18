@@ -30,14 +30,14 @@ public class csvWriter : MonoBehaviour {
 
     void OnApplicationQuit() {
         Debug.Log("Application Exited - Automatically logging data..");
-        //writeToFile();
+        writeToFile();
     }
 
     private void Update() {
         if (saveData) {
             saveData = false;
             Debug.Log("Data saved..");
-            writeToFile();
+            //writeToFile();
         }
     }
 

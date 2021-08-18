@@ -15,7 +15,7 @@ public class dataReader : MonoBehaviour
     private string DIRET = "eyetracking/";
     private string DIRCL = "checklist/realtime/";
     private string DIRCLP = "checklist/post/";
-    private bool dataInitialized = false;
+    public bool dataInitialized = false;
     [SerializeField]
     private int heatMapCount = 0;
     private Vector3 newHeadPos;
@@ -41,12 +41,12 @@ public class dataReader : MonoBehaviour
         logElementData.Add("Participant, Time Looking At Floor, Overall Eye Tracking Time");
         logElementData.Add(importFile + "," + floorRay.timeLookingAtFloor + "," + overallEyeTrackingTime);
         logElementData.Add("");
-        logElementData.Add("Element ID, Total Collision Points, Time Spent Looking At Element, Dwell Timer on Elements (0.5s threshold), Dwell Count Of Elements (0.5s threshold), ERROR");
+        logElementData.Add("Element ID, Total Collision Points, Time Spent Looking At Element, Dwell Timer on Elements (0.5s threshold), Dwell Count Of Elements (0.5s threshold), Peripheral, ERROR, Size, ");
         foreach (GameObject element in elementsByID) {
             elementData ele = element.GetComponent<elementData>();
             Debug.Log("Element = " + element.name + " , " + ele);
             Debug.Log("Element ID = " + ele.elementID + " , TotalCollisionPoints = " + ele.totalCollisionPointsRaw + " , TimeSpentLookingAtElement = " + ele.timeSpentLookingAtElement + " , DwellTimer = " + ele.dwellTime);
-            logElementData.Add(ele.elementID + "," + ele.totalCollisionPointsRaw + "," + ele.timeSpentLookingAtElement + "," + ele.dwellTime + "," + ele.dwellCount);
+            logElementData.Add(ele.elementID + "," + ele.totalCollisionPointsRaw + "," + ele.timeSpentLookingAtElement + "," + ele.dwellTime + "," + ele.dwellCount + "," + ele.withinFOVTimer);
         }
         logParticipantData(logElementData, "outputa.csv");
         logParticipantData(logFloorDwellData, "outputb.csv");
@@ -104,9 +104,15 @@ public class dataReader : MonoBehaviour
             if (conditionText.text == "AR") {
                 rootObjs[0].SetActive(true);
                 rootObjs[1].SetActive(false);
-            } else {
+                rootObjs[2].SetActive(false);
+            } else if (conditionText.text == "PB") {
                 rootObjs[0].SetActive(false);
                 rootObjs[1].SetActive(true);
+                rootObjs[2].SetActive(false);
+            } else {
+                rootObjs[0].SetActive(false);
+                rootObjs[1].SetActive(false);
+                rootObjs[2].SetActive(true);
             }
             allChecklistElementsUnsrted = GameObject.FindGameObjectsWithTag("BIM");
             elementsByID = new GameObject[30];
@@ -123,12 +129,38 @@ public class dataReader : MonoBehaviour
 
     }
 
+    [SerializeField]
+    private Text nextEleText;
+
     public string nextEleCheckedOff = "";
     public string nextEleCheckedOffID = "";
-
+    public bool debuggingInEdit = true;
     private void Update() {
         //Debug.Log("RT Timestamp:"+realtimeChecklistData[0].getTimeStamp());
-
+        if (debuggingInEdit && !runAutomatically) {
+            if (Input.GetKey(KeyCode.UpArrow)) {
+                slider.value += 1f;
+            } else if (Input.GetKey(KeyCode.DownArrow)) {
+                slider.value -= 1f;
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow)) {
+                slider.value += 1f;
+            } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+                slider.value -= 1f;
+            }
+            int currTimeStamp = (int)float.Parse(data[(int)slider.value].getTimeStamp());
+            int nextChecklistTimerVal = (int)float.Parse(realtimeChecklistData[realtimeChecklistDataCounter].getTimeStamp());
+            //Debug.Log(currTimeStamp);
+            if (nextChecklistTimerVal == currTimeStamp) {
+                realtimeChecklistDataCounter++;
+            }
+            if (currTimeStamp != 0) {
+                Debug.Log(realtimeChecklistDataCounter);
+                nextEleCheckedOff = realtimeChecklistData[realtimeChecklistDataCounter].getEleName();
+                nextEleCheckedOffID = realtimeChecklistData[realtimeChecklistDataCounter].getEleID();
+                nextEleText.text = "Next element checked off = " + nextEleCheckedOff + " (" + nextEleCheckedOffID + ")";
+            }
+        }
         if (dataInitialized) {
             setCube((int)slider.value);
         } if (runAutomatically) {
@@ -164,6 +196,7 @@ public class dataReader : MonoBehaviour
                 // Next Element To Be Checked Off
                 nextEleCheckedOff = realtimeChecklistData[realtimeChecklistDataCounter].getEleName();
                 nextEleCheckedOffID = realtimeChecklistData[realtimeChecklistDataCounter].getEleID();
+                nextEleText.text = "Next element checked off = " + nextEleCheckedOff + " (" + nextEleCheckedOffID + ")";
                 //Debug.Log("Next Ele Checked Off:"+realtimeChecklistData[realtimeChecklistDataCounter].getEleName());
                 /*if (!realtimeChecklistData[realtimeChecklistDataCounter].isBendcastAssigned) {
                     bendcast.currentlyPointingAtRender = realtimeChecklistData[realtimeChecklistDataCounter].getRefGameObject().GetComponent<Renderer>();
@@ -174,22 +207,28 @@ public class dataReader : MonoBehaviour
             }
         }
     }
+    [SerializeField]
+    private cursorDwellCapturer cursorDwellCapturer;
 
     public void setCube(int slider) {
         if (root.debugMode) {
             Debug.Log("At pos:" + slider + " | User Pos:" + data[slider].getPosition() + " | User Rot::" + data[slider].getEulerAngles());
         }
-        
+        /*if (data[slider] == null) {
+            return;
+        }*/
         timeStampText.text = "Timestamp = "+ data[slider].getTimeStamp();
         cubeLocalPlaybackObj.transform.position = data[slider].getPosition();
         cubeLocalPlaybackObj.transform.eulerAngles = data[slider].getEulerAngles();
         head.transform.position = data[slider].getHeadPosition();
         head.transform.localEulerAngles = data[slider].getEulerAngles();
-        if (data[slider].isHeatMapCreated()) {
-            // Do something here?
-        } else {
-            data[slider].setHeatMapCreated(true);
-            heatmapGenerator(data[slider].getPosition(), data[slider].getEulerAngles(), data[slider].getHeatMapRef());
+        if (!cursorDwellCapturer.calculatePredictedHitpoint) {
+            if (data[slider].isHeatMapCreated()) {
+                // Do something here?
+            } else {
+                data[slider].setHeatMapCreated(true);
+                heatmapGenerator(data[slider].getPosition(), data[slider].getEulerAngles(), data[slider].getHeatMapRef());
+            }
         }
     }
 
@@ -244,7 +283,7 @@ public class dataReader : MonoBehaviour
         }
         return count;
     }
-    storeData[] data = null;
+    public storeData[] data = null;
     public storeRTChecklistData[] realtimeChecklistData = null;
     public float offset;
     private int count = 0;
@@ -272,6 +311,7 @@ public class dataReader : MonoBehaviour
             }
         }
     }
+    public List<elementData> eleDataList = new List<elementData>();
     public void readRTChecklistData() {
         Debug.Log("DIR = " + @DIR + DIRCL + importFile + ".csv");
         using (var reader = new StreamReader(@DIR + DIRCL + importFile + ".csv")) {
@@ -300,6 +340,7 @@ public class dataReader : MonoBehaviour
                     GameObject refGameObj = elementsByID[int.Parse(split[2])];
                     if (refGameObj.GetComponent<elementData>() == null) {
                         elementData eleData = refGameObj.AddComponent<elementData>();
+                        eleDataList.Add(eleData);
                         eleData.elementID = int.Parse(split[2]);
                         realtimeChecklistData[count - 1].setRefGameObject(refGameObj);
 

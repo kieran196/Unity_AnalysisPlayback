@@ -2,7 +2,9 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - BendCast
+    - FOVElements
     - Logdata
+    - PredictedHitpoint
     - WalkingDataReader
     - castray
     - collisions
@@ -10,7 +12,38 @@ ScriptsOnlyBuild:
     - csvWriter
     - cursorDwellCapturer
     - dataReader
+    - getDist
     - updatePos
+    TridifyComponents.dll:
+    - Tridify.IfcBuilding
+    - Tridify.IfcBuildingElementProxy
+    - Tridify.IfcBuildingElementProxyType
+    - Tridify.IfcBuildingStorey
+    - Tridify.IfcColumn
+    - Tridify.IfcColumnType
+    - Tridify.IfcCovering
+    - Tridify.IfcCoveringType
+    - Tridify.IfcDoor
+    - Tridify.IfcDoorStyle
+    - Tridify.IfcFileDescription
+    - Tridify.IfcFlowTerminal
+    - Tridify.IfcLightFixtureType
+    - Tridify.IfcMaterial
+    - Tridify.IfcMaterialLayerSetUsage
+    - Tridify.IfcMaterialList
+    - Tridify.IfcMember
+    - Tridify.IfcMemberType
+    - Tridify.IfcPresentationLayerAssignment
+    - Tridify.IfcProject
+    - Tridify.IfcPropertySet
+    - Tridify.IfcRailing
+    - Tridify.IfcSite
+    - Tridify.IfcSlab
+    - Tridify.IfcSlabType
+    - Tridify.IfcStairFlight
+    - Tridify.IfcTypeProduct
+    - Tridify.IfcWallStandardCase
+    - Tridify.IfcWallType
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -68,53 +101,119 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11188}
     - Class: 114
-      Script: {instanceID: 11326}
+      Script: {instanceID: 11190}
     - Class: 114
-      Script: {instanceID: 11356}
+      Script: {instanceID: 11328}
     - Class: 114
       Script: {instanceID: 11358}
     - Class: 114
-      Script: {instanceID: 11398}
+      Script: {instanceID: 11360}
     - Class: 114
-      Script: {instanceID: 11496}
+      Script: {instanceID: 11400}
     - Class: 114
-      Script: {instanceID: 11586}
+      Script: {instanceID: 11498}
     - Class: 114
-      Script: {instanceID: 11662}
+      Script: {instanceID: 11588}
     - Class: 114
-      Script: {instanceID: 11698}
+      Script: {instanceID: 11664}
     - Class: 114
-      Script: {instanceID: 11792}
+      Script: {instanceID: 11700}
     - Class: 114
-      Script: {instanceID: 11968}
+      Script: {instanceID: 11794}
     - Class: 114
-      Script: {instanceID: 11986}
+      Script: {instanceID: 11972}
     - Class: 114
-      Script: {instanceID: 12060}
+      Script: {instanceID: 11990}
     - Class: 114
-      Script: {instanceID: 12122}
+      Script: {instanceID: 12064}
     - Class: 114
-      Script: {instanceID: 12184}
+      Script: {instanceID: 12126}
     - Class: 114
-      Script: {instanceID: 12340}
+      Script: {instanceID: 12188}
     - Class: 114
-      Script: {instanceID: 12372}
+      Script: {instanceID: 12344}
     - Class: 114
-      Script: {instanceID: 12762}
+      Script: {instanceID: 12376}
     - Class: 114
-      Script: {instanceID: 12880}
+      Script: {instanceID: 12456}
     - Class: 114
-      Script: {instanceID: 12902}
+      Script: {instanceID: 12462}
     - Class: 114
-      Script: {instanceID: 13224}
+      Script: {instanceID: 12464}
     - Class: 114
-      Script: {instanceID: 13236}
+      Script: {instanceID: 12466}
     - Class: 114
-      Script: {instanceID: 13250}
+      Script: {instanceID: 12470}
     - Class: 114
-      Script: {instanceID: 13266}
+      Script: {instanceID: 12472}
     - Class: 114
-      Script: {instanceID: 29390}
+      Script: {instanceID: 12476}
+    - Class: 114
+      Script: {instanceID: 12478}
+    - Class: 114
+      Script: {instanceID: 12494}
+    - Class: 114
+      Script: {instanceID: 12496}
+    - Class: 114
+      Script: {instanceID: 12514}
+    - Class: 114
+      Script: {instanceID: 12528}
+    - Class: 114
+      Script: {instanceID: 12546}
+    - Class: 114
+      Script: {instanceID: 12548}
+    - Class: 114
+      Script: {instanceID: 12550}
+    - Class: 114
+      Script: {instanceID: 12552}
+    - Class: 114
+      Script: {instanceID: 12560}
+    - Class: 114
+      Script: {instanceID: 12562}
+    - Class: 114
+      Script: {instanceID: 12578}
+    - Class: 114
+      Script: {instanceID: 12582}
+    - Class: 114
+      Script: {instanceID: 12584}
+    - Class: 114
+      Script: {instanceID: 12590}
+    - Class: 114
+      Script: {instanceID: 12606}
+    - Class: 114
+      Script: {instanceID: 12608}
+    - Class: 114
+      Script: {instanceID: 12610}
+    - Class: 114
+      Script: {instanceID: 12620}
+    - Class: 114
+      Script: {instanceID: 12634}
+    - Class: 114
+      Script: {instanceID: 12640}
+    - Class: 114
+      Script: {instanceID: 12642}
+    - Class: 114
+      Script: {instanceID: 12766}
+    - Class: 114
+      Script: {instanceID: 12884}
+    - Class: 114
+      Script: {instanceID: 12906}
+    - Class: 114
+      Script: {instanceID: 13228}
+    - Class: 114
+      Script: {instanceID: 13240}
+    - Class: 114
+      Script: {instanceID: 13254}
+    - Class: 114
+      Script: {instanceID: 13270}
+    - Class: 114
+      Script: {instanceID: 17850}
+    - Class: 114
+      Script: {instanceID: 43146}
+    - Class: 114
+      Script: {instanceID: 577952}
+    - Class: 114
+      Script: {instanceID: 1059798}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -134,6 +233,12 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: 52143e7344345edb0081e405804113ad
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WalkingDataReader
   - hash:
       serializedVersion: 2
       Hash: 4bc4346a71a8df53a6b106f68ef3a190
@@ -364,6 +469,12 @@ ScriptsOnlyBuild:
     className: SimpleHighlightFromBendcast
   - hash:
       serializedVersion: 2
+      Hash: 053938fb90bacae97c87864f3305ea54
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: floorMapElement
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -388,7 +499,7 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
-      Hash: c5916f8716b2d6b49ba8dd24dfa0c0a8
+      Hash: 31707d5debac13406fa6030f93263d79
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: cursorDwellCapturer
@@ -412,7 +523,7 @@ ScriptsOnlyBuild:
     className: csvWriter
   - hash:
       serializedVersion: 2
-      Hash: 39b99db3a9eb08614bd9e620e16bcdf0
+      Hash: ad4452d3e1b8a1b83fe45e2023bd5519
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: elementData
@@ -1144,7 +1255,7 @@ ScriptsOnlyBuild:
     className: TimelineAsset
   - hash:
       serializedVersion: 2
-      Hash: 9beaada41bc3d80689a7b2c70caa22da
+      Hash: 59c6929484de0375b893213ce229bc28
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: dataReader
@@ -1936,17 +2047,29 @@ ScriptsOnlyBuild:
     className: StatisticsWindow
   - hash:
       serializedVersion: 2
-      Hash: 52143e7344345edb0081e405804113ad
+      Hash: eb0bc6b76098363c6e1fe73dda6b7f08
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: WalkingDataReader
+    className: csvParser
   - hash:
       serializedVersion: 2
-      Hash: 053938fb90bacae97c87864f3305ea54
+      Hash: e5da7923f7920d4f174e2934a9088002
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: floorMapElement
+    className: PredictedHitpoint
+  - hash:
+      serializedVersion: 2
+      Hash: 3ddc735933c5a30a5d04f47dfff3b086
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: getDist
+  - hash:
+      serializedVersion: 2
+      Hash: 7fb1888fadf9407c8c251d9f58dd6b33
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FOVElements
   platform: 5
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Kieran/Desktop/builds/TimestampPlayback.exe
+  playerPath: C:/Users/Kieran/Desktop/builds/test/TimestampPlayback.exe
