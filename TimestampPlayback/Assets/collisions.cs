@@ -20,7 +20,7 @@ public class collisions : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.transform.name == "Collider" && !other.transform.parent.Equals(this.gameObject)) {
             collisionCount++;
-            updateCollisions();
+            updateCollisions(colThreshold.gradientBlending);
             if (enableDebugging) {
                 //Debug.Log("Trigger enter:"+other.transform.name);
             }
@@ -44,7 +44,7 @@ public class collisions : MonoBehaviour {
     private void OnTriggerExit(Collider other) {
             if (other.transform.name == "Collider" && !other.transform.parent.Equals(this.gameObject)) {
             collisionCount--;
-            updateCollisions();
+            updateCollisions(colThreshold.gradientBlending);
             if (enableDebugging) {
                 Debug.Log("Trigger exit:"+other.transform.name);
             }
@@ -65,19 +65,62 @@ public class collisions : MonoBehaviour {
         }
     }
 
-    public void updateCollisions() {
-        if (collisionCount >= colThreshold.GREEN && collisionCount < (colThreshold.YELLOW - colThreshold.GREEN)) {
-            changeMaterial(Color.green);
-        } else if (collisionCount >= (colThreshold.YELLOW - colThreshold.GREEN) && collisionCount < colThreshold.YELLOW) {
-            changeMaterial(new Color(0.5f, 1f, 0f, 1f));
-        } else if (collisionCount >= colThreshold.YELLOW && collisionCount < (colThreshold.RED - colThreshold.YELLOW)) {
-            changeMaterial(Color.yellow);
-        } else if (collisionCount >= (colThreshold.RED - colThreshold.YELLOW) && collisionCount < colThreshold.RED) {
-            changeMaterial(new Color(1f, 0.5f, 0f, 1f));
+    private float getGradientVal(float threshMin, float threshMax, bool invertCalc) {
+        // Give us a range between 0 to 255 based on the threshold vals
+        float x = threshMax - threshMin;
+        float newThreshHold = 255f / threshMax;
+        float calcGrad = x * newThreshHold;
+        if (invertCalc) {
+            calcGrad = 255 - calcGrad;
+        }
+        return calcGrad;
+    }
+    public float gradientBlendVal;
+    public void updateCollisions(bool gradientBlend) {
+        if (collisionCount >= colThreshold.GREEN && collisionCount < colThreshold.YELLOW) {
+            gradientBlendVal = getGradientVal(colThreshold.GREEN, colThreshold.YELLOW, false);
+            if (!gradientBlend) {
+                changeMaterial(Color.green);
+            } else {
+                //0, 1, 0 = Green
+                //1, 1, 0 = Yellow
+                Color col = new Color((gradientBlendVal/255f), 1, 0, 1);
+                changeMaterial(col);
+            }
+        } else if (collisionCount >= colThreshold.YELLOW && collisionCount < colThreshold.RED) {
+            gradientBlendVal = getGradientVal(colThreshold.YELLOW, colThreshold.RED, true);
+            if (!gradientBlend) {
+                changeMaterial(Color.yellow);
+            } else {
+                //1, 1, 0 = Yellow
+                //1, 0, 0 = Red
+                Color col = new Color(1, (gradientBlendVal / 255f), 0, 1);
+                changeMaterial(col);
+            }
         } else if (collisionCount >= colThreshold.RED) {
+            gradientBlendVal = 255f;
             changeMaterial(Color.red);
         }
     }
+
+    /*public void updateCollisions(bool gradientBlend) {
+        if (!gradientBlend) {
+            if (collisionCount >= colThreshold.GREEN && collisionCount < (colThreshold.YELLOW - colThreshold.GREEN)) {
+                changeMaterial(Color.green);
+            } else if (collisionCount >= (colThreshold.YELLOW - colThreshold.GREEN) && collisionCount < colThreshold.YELLOW) {
+                changeMaterial(new Color(0.5f, 1f, 0f, 1f));
+                getGradientVal(colThreshold.GREEN, colThreshold.YELLOW);
+            } else if (collisionCount >= colThreshold.YELLOW && collisionCount < (colThreshold.RED - colThreshold.YELLOW)) {
+                changeMaterial(Color.yellow);
+            } else if (collisionCount >= (colThreshold.RED - colThreshold.YELLOW) && collisionCount < colThreshold.RED) {
+                changeMaterial(new Color(1f, 0.5f, 0f, 1f));
+            } else if (collisionCount >= colThreshold.RED) {
+                changeMaterial(Color.red);
+            }
+        } else { // Gradient Blending Mode Enabled..
+
+        }
+    }*/
 
     private void changeMaterial(Color col) {
         Material mat = GetComponent<Renderer>().material;

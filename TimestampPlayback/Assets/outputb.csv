@@ -1,12 +1,53 @@
 Dwell Time At Floor (>0.5f), Last Element Looked At Name, Last Element Looked At ID, Next Element Checked off list (Name), Next Element Checked off list (ID)
-0.0981833,Basic Wall:Generic - 200mm:347943,0,Basic Wall:Generic - 200mm:347943,0
-0.2202456,Assembled Stair:Stair:349153 Run 1,7,Basic Wall:Generic - 200mm:347943,0
-0.1175694,Assembled Stair:Stair:349153 Run 1,7,Railing:1100mm:349532,2
-1.595178,Assembled Stair:Stair:349153 Stringer 1,4,Assembled Stair:Stair:349153 Stringer 1,4
-2.380008,Railing:1100mm:349536,8,Assembled Stair:Stair:349153 Stringer 1,4
-0.9339385,Railing:1100mm:349536,8,Assembled Stair:Stair:349153 Stringer 1,4
-1.814093,Railing:1100mm:349536,8,Assembled Stair:Stair:349153 Stringer 1,4
-2.572637,Assembled Stair:Stair:349153 Stringer 1,4,Assembled Stair:Stair:349153 Stringer 1,4
-2.718765,Assembled Stair:Stair:349153 Stringer 1,4,Assembled Stair:Stair:349153 Stringer 1,4
-0.7238474,Assembled Stair:Stair:349153 Run 1,7,Assembled Stair:Stair:349153 Stringer 1,4
-6.57858,Assembled Stair:Stair:349153 Stringer 1,4,Basic Wall:Generic - 200mm:347460,5
+0.4667869,Switch_-_Double_3951:Double Switch:361137,12,Switch_-_Double_3951:Double Switch:361137,12
+0.5891756,Switch_-_Double_3951:Double Switch:361137,12,Switch_-_Double_3951:Double Switch:361508,13
+0.2268148,Switch_-_Double_3951:Double Switch:361508,13,Switch_-_Double_3951:Double Switch:361508,13
+0.1676612,Basic Wall:Generic - 200mm:347460,5,Switch_-_Double_3951:Double Switch:361508,13
+0.0801296,Basic Wall:Generic - 200mm:347460,5,Basic Wall:Generic - 200mm:347460,5
+2.267312,Basic Wall:Generic - 200mm:347943,0,Phone,21
+0.2838327,Basic Wall:Generic - 200mm:347656,14,PHILIPS_luxspace-light:377282,20
+0.5200571,Basic Wall:Generic - 200mm:347656,14,Basic Wall:Generic - 200mm:347656,14
+0.4636821,Basic Wall:Generic - 200mm:347656,14,Basic Wall:Generic - 200mm:347656,14
+0.4079953,Basic Wall:Generic - 200mm:347656,14,Basic Wall:Generic - 200mm:347656,14
+0.1622686,Basic Wall:Generic - 200mm:350060,11,Assembled Stair:Stair:349153 Run 1,7
+2.326334,Basic Wall:Generic - 200mm:350060,11,Assembled Stair:Stair:349153 Run 1,7
+1.338248,Basic Wall:Generic - 200mm:350060,11,Assembled Stair:Stair:349153 Run 1,7
+0.08422261,Basic Wall:Generic - 200mm:350060,11,Assembled Stair:Stair:349153 Run 1,7
+0.1732361,Basic Wall:Generic - 200mm:350060,11,Assembled Stair:Stair:349153 Run 1,7
+0.286034,M_Rectangular Column:475 x 610mm:365701,10,Assembled Stair:Stair:349153 Run 1,7
+0.5356809,Railing:1100mm:349532,2,Assembled Stair:Stair:349153 Run 1,7
+2.29802,Assembled Stair:Stair:349153 Run 1,7,Assembled Stair:Stair:349153 Run 1,7
+0.2394137,Railing:1100mm:349532,2,Assembled Stair:Stair:349153 Run 1,7
+0.5781898,Railing:1100mm:349536,8,Assembled Stair:Stair:349153 Run 1,7
+0.5933502,Assembled Stair:Stair:349153 Stringer 1,4,Assembled Stair:Stair:349153 Stringer 1,4
+0.3876369,Railing:1100mm:349536,8,Assembled Stair:Stair:349153 Stringer 1,4
+0.7646352,Railing:1100mm:349536,8,Assembled Stair:Stair:349153 Stringer 1,4
+0.1516435,Railing:1100mm:349536,8,Assembled Stair:Stair:349153 Stringer 1,4
+0.059121,Assembled Stair:Stair:349153 Run 1,7,Assembled Stair:Stair:349153 Stringer 2,6
+0.4642428,Assembled Stair:Stair:349153 Run 1,7,Assembled Stair:Stair:349153 Stringer 2,6
+1.494654,Assembled Stair:Stair:349153 Run 1,7,Railing:1100mm:349532,2
+0.4112157,Assembled Stair:Stair:349153 Run 1,7,Railing:1100mm:349532,2
+0.2634291,Railing:1100mm:349532,2,Railing:1100mm:349532,2
+2.801098,Assembled Stair:Stair:349153 Run 1,7,Railing:1100mm:349532,2
+0.1015177,Assembled Stair:Stair:349153 Run 1,7,Railing:1100mm:349532,2
+0.125956,Assembled Stair:Stair:349153 Stringer 2,6,Railing:1100mm:349532,2
+0.5208558,Assembled Stair:Stair:349153 Stringer 2,6,Railing:1100mm:349532,2
+0.2674895,Railing:1100mm:349532,2,Railing:1100mm:349536,8
+0.9486892,M_Rectangular Column:475 x 610mm:365844,9,M_Rectangular Column:475 x 610mm:365844,9
+0.2633281,M_Rectangular Column:475 x 610mm:365701,10,PHILIPS_luxspace-light1,16
+0.2623457,M_Rectangular Column:475 x 610mm:365701,10,PHILIPS_luxspace-light:378021,17
+0.3981612,PHILIPS_luxspace-light:378021,17,PHILIPS_luxspace-light:378021,17
+0.527926,ExitSign,22,LiftSign,18
+0.348083,LiftSign,18,PHILIPS_luxspace-light:376308,19
+0.8667322,LiftSign,18,PHILIPS_luxspace-light:376308,19
+0.0346743,PHILIPS_luxspace-light:378021,17,ExitSign,22
+0.04322921,PHILIPS_luxspace-light:378021,17,PHILIPS_luxspace-light:377731,23
+0.0876699,PHILIPS_luxspace-light:378021,17,PHILIPS_luxspace-light:377731,23
+0.8268038,PHILIPS_luxspace-light:377731,23,PHILIPS_luxspace-light2,24
+0.2356325,FireExtinguisherSign2,28,PHILIPS_luxspace-light:376148,29
+0.09013171,ExitSign2,27,PHILIPS_luxspace-light:376148,29
+0.0475972,PHILIPS_luxspace-light:376148,29,FireExtinguisherSign2,28
+0.0489034,Basic Wall:Generic - 200mm:347943,0,ExitSign2,27
+0.047623,ExitSign2,27,ExitSign2,27
+0.3434698,ExitSign2,27,ExitSign2,27
+1.528717,ExitSign2,27,ExitSign2,27

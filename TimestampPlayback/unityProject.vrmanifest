@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.cfd_playground.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "D:\\GitHub\\Unity_AnalysisPlayback\\TimestampPlayback\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "TimestampPlayback [Testing]"
+        }
+      }
+    }
+  ]
+}

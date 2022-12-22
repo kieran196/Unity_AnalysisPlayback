@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class castray : MonoBehaviour {
     [SerializeField]
+    private floorDrawer drawer;
+    [SerializeField]
     private cursorDwellCapturer dwellCapturer;
     public float timeLookingAtFloor = 0f;
     private float tempTimeLookingAtFloorThresh, tempTimeLookingAtFloor = 0f;
@@ -26,6 +28,15 @@ public class castray : MonoBehaviour {
         Debug.DrawRay(locationTrackerRay.transform.position, -locationTrackerRay.transform.up, Color.green);
         RaycastHit hitt;
         if (Physics.Raycast(locationTrackerRay.transform.position, -locationTrackerRay.transform.up, out hitt)) {
+            
+            if ((hitt.transform.tag == "FloorMap" || hitt.transform.name.StartsWith("Floor")) && datareader.runAutomatically) {
+                Debug.Log("Hitting:" + hitt.transform.name);
+                Vector3 pos = hitt.point;
+                if (!drawer.isInit) {
+                    drawer.CreateBrush(new Vector3(pos.x, pos.y, pos.z));
+                }
+                drawer.AddPoint(new Vector3(pos.x, pos.y, pos.z));
+            }
             if (hitt.transform.tag == "FloorMap" && datareader.runAutomatically) {
                 if (hitt.transform.gameObject != lastFloorMapObj) {
                     lastFloorMapObj = hitt.transform.gameObject;
