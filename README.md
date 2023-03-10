@@ -1,2 +1,2 @@
 # Unity_AnalysisPlayback
-An analysis tool that allows you to playback data in real-time for Allison's project.
+A data analysis tool aimed to evaluate construction defect management inspection based user eye-tracking data.
