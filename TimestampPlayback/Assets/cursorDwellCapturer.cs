@@ -35,10 +35,10 @@ public class cursorDwellCapturer : MonoBehaviour {
         if (other.tag == "BIM") {
             lastLookedAtGameObj = other.gameObject;
             if (other.GetComponent<elementData>() != null) {
-                lastLookedAtGameObjID = other.GetComponent<elementData>().elementID.ToString();
+                //lastLookedAtGameObjID = other.GetComponent<elementData>().elementID.ToString();
             } else {
                 //Debug.Log(other.transform.name);
-                lastLookedAtGameObjID = other.transform.parent.GetComponent<elementData>().elementID.ToString();
+                //lastLookedAtGameObjID = other.transform.parent.GetComponent<elementData>().elementID.ToString();
             }
             
         }

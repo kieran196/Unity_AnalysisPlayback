@@ -262,10 +262,10 @@
     <None Include="Assets\SteamVR\SteamVR.asmdef" />
     <None Include="Assets\SteamVR\Resources\SteamVR_Fade.shader" />
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0b4/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -460,40 +460,40 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Valve.Newtonsoft.Json">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Clipper">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/Clipper.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/Clipper.dll</HintPath>
     </Reference>
     <Reference Include="LibTessDotNet">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/LibTessDotNet.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/LibTessDotNet.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Sprache">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/Sprache.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/Sprache.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Core">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Core.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Interfaces">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Interfaces.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Linq">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Linq.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.PlatformServices">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.PlatformServices.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.PlatformServices.dll</HintPath>
     </Reference>
     <Reference Include="System.Reactive.Windows.Threading">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Windows.Threading.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/System.Reactive.Windows.Threading.dll</HintPath>
     </Reference>
     <Reference Include="TridifyComponents">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/TridifyComponents.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/TridifyComponents.dll</HintPath>
     </Reference>
     <Reference Include="TridifyEditorTools">
-      <HintPath>D:/GitHub/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/TridifyEditorTools.dll</HintPath>
+      <HintPath>C:/Users/Kieran/Desktop/Unity_AnalysisPlayback/TimestampPlayback/Assets/Tridify/Plugins/TridifyEditorTools.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0b4/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

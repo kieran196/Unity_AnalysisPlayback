@@ -31,8 +31,7 @@ public class dataReader : MonoBehaviour
     public int realtimeChecklistDataCounter = 0;
 
     public GameObject[] elementsByID;
-    [SerializeField]
-    private BendCast bendcast;
+
     [SerializeField]
     private WalkingDataReader walkingDataReader;
 
@@ -116,17 +115,13 @@ public class dataReader : MonoBehaviour
             }
             allChecklistElementsUnsrted = GameObject.FindGameObjectsWithTag("BIM");
             elementsByID = new GameObject[30];
-            readPTChecklistData();
+            //readPTChecklistData();
             root = FindObjectOfType<updatePos>();
             Debug.Log("Found:" + root.transform.name);
             cubeLocalPlaybackObj.SetActive(true);
             readData();
-            readRTChecklistData();
+            //readRTChecklistData();
         }
-    }
-
-    public void stopApp() {
-
     }
 
     [SerializeField]
@@ -162,7 +157,7 @@ public class dataReader : MonoBehaviour
             }
         }
         if (dataInitialized) {
-            setCube((int)slider.value);
+            setIndicator((int)slider.value);
         } if (runAutomatically) {
             realtimeTimer += (Time.deltaTime*offset)*speedIncreased;
             realtimeTimerConverted = realtimeTimer * 0.121f;
@@ -178,39 +173,28 @@ public class dataReader : MonoBehaviour
             //if (realtimeChecklistData[realtimeChecklistDataCounter] == null) {
             //    return;
             //}
-            int nextChecklistTimerVal = (int)float.Parse(realtimeChecklistData[realtimeChecklistDataCounter].getTimeStamp());
-            int currTimeStamp = (int)float.Parse(data[(int)slider.value].getTimeStamp());
-            if (nextChecklistTimerVal == currTimeStamp) {
-                Debug.Log("Participant checked ele:" + realtimeChecklistData[realtimeChecklistDataCounter].getEleName() + " to: " + realtimeChecklistData[realtimeChecklistDataCounter].getChecklistValue());
-                string checklistVal = realtimeChecklistData[realtimeChecklistDataCounter].getChecklistValue();
-                GameObject gameObjRef = realtimeChecklistData[realtimeChecklistDataCounter].getRefGameObject();
-                realtimeChecklistDataCounter++;
-                /*if (checklistVal == "correct") {
-                    gameObjRef.GetComponent<Renderer>().material.color = Color.green;
-                } else if (checklistVal == "other") {
-                    gameObjRef.GetComponent<Renderer>().material.color = Color.yellow;
-                } else if (checklistVal == "incorrect") {
-                    gameObjRef.GetComponent<Renderer>().material.color = Color.red;
-                }*/
-            } else if (currTimeStamp != 0) {
-                // Next Element To Be Checked Off
-                nextEleCheckedOff = realtimeChecklistData[realtimeChecklistDataCounter].getEleName();
-                nextEleCheckedOffID = realtimeChecklistData[realtimeChecklistDataCounter].getEleID();
-                nextEleText.text = "Next element checked off = " + nextEleCheckedOff + " (" + nextEleCheckedOffID + ")";
-                //Debug.Log("Next Ele Checked Off:"+realtimeChecklistData[realtimeChecklistDataCounter].getEleName());
-                /*if (!realtimeChecklistData[realtimeChecklistDataCounter].isBendcastAssigned) {
-                    bendcast.currentlyPointingAtRender = realtimeChecklistData[realtimeChecklistDataCounter].getRefGameObject().GetComponent<Renderer>();
-                    bendcast.currentlyPointingAt = realtimeChecklistData[realtimeChecklistDataCounter].getRefGameObject();
-                    bendcast.currentlyPointingAtRender.material.color = Color.blue;
-                    realtimeChecklistData[realtimeChecklistDataCounter].isBendcastAssigned = true;
-                }*/
-            }
+            //int nextChecklistTimerVal = (int)float.Parse(realtimeChecklistData[realtimeChecklistDataCounter].getTimeStamp());
+            //int currTimeStamp = (int)float.Parse(data[(int)slider.value].getTimeStamp());
+            //updateNextCheckedElement(nextChecklistTimerVal, currTimeStamp);
         }
     }
     [SerializeField]
     private cursorDwellCapturer cursorDwellCapturer;
 
-    public void setCube(int slider) {
+    public void updateNextCheckedElement(int checkListTimer, int timeStamp) {
+        if (checkListTimer == timeStamp) {
+            Debug.Log("Participant checked ele:" + realtimeChecklistData[realtimeChecklistDataCounter].getEleName() + " to: " + realtimeChecklistData[realtimeChecklistDataCounter].getChecklistValue());
+            realtimeChecklistDataCounter++;
+        } else if (timeStamp != 0) {
+            // Next Element To Be Checked Off
+            nextEleCheckedOff = realtimeChecklistData[realtimeChecklistDataCounter].getEleName();
+            nextEleCheckedOffID = realtimeChecklistData[realtimeChecklistDataCounter].getEleID();
+            nextEleText.text = "Next element checked off = " + nextEleCheckedOff + " (" + nextEleCheckedOffID + ")";
+            //Debug.Log("Next Ele Checked Off:"+realtimeChecklistData[realtimeChecklistDataCounter].getEleName());
+        }
+    }
+
+    public void setIndicator(int slider) {
         if (root.debugMode) {
             Debug.Log("At pos:" + slider + " | User Pos:" + data[slider].getPosition() + " | User Rot::" + data[slider].getEulerAngles());
         }
@@ -224,7 +208,7 @@ public class dataReader : MonoBehaviour
         head.transform.localEulerAngles = data[slider].getEulerAngles();
         if (!cursorDwellCapturer.calculatePredictedHitpoint) {
             if (data[slider].isHeatMapCreated()) {
-                // Do something here?
+                // Functionality here
             } else {
                 data[slider].setHeatMapCreated(true);
                 heatmapGenerator(data[slider].getPosition(), data[slider].getEulerAngles(), data[slider].getHeatMapRef());
@@ -256,12 +240,12 @@ public class dataReader : MonoBehaviour
         if (isUnityEditor) {
             allChecklistElementsUnsrted = GameObject.FindGameObjectsWithTag("BIM");
             elementsByID = new GameObject[30];
-            readPTChecklistData();
+            //readPTChecklistData();
             root = FindObjectOfType<updatePos>();
             Debug.Log("Found:" + root.transform.name);
             cubeLocalPlaybackObj.SetActive(true);
             readData();
-            readRTChecklistData();
+            //readRTChecklistData();
         }
     }
 
